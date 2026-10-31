@@ -64,7 +64,7 @@ npm run lint
 npm run build
 ```
 
-بيتنشر كموقع ثابت على GitHub Pages أو Vercel أو Netlify. الروابط بصيغة `/#/صفحة` عشان تشتغل على أي استضافة من غير إعدادات إضافية.
+النشر على GitHub Pages تلقائي من `.github/workflows/deploy.yml` (في إعدادات Pages اختار Source: GitHub Actions). وبيتنشر كمان على Vercel أو Netlify كموقع ثابت عادي. الروابط بصيغة `/#/صفحة` عشان تشتغل على أي استضافة من غير إعدادات إضافية.
 
 ## ملاحظات
 
