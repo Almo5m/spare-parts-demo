@@ -64,7 +64,7 @@ npm run lint
 npm run build
 ```
 
-بيتنشر على Vercel أو Netlify أو GitHub Pages كموقع ثابت عادي.
+بيتنشر كموقع ثابت على GitHub Pages أو Vercel أو Netlify. الروابط بصيغة `/#/صفحة` عشان تشتغل على أي استضافة من غير إعدادات إضافية.
 
 ## ملاحظات
 

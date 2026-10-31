@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { AuthProvider } from './context/AuthProvider'
 import { useAuth } from './context/useAuth'
@@ -46,7 +46,7 @@ function AppContent() {
   if (loading) return <div className="p-8">جاري التحميل...</div>
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route element={<Layout />}>
@@ -73,7 +73,7 @@ function AppContent() {
           </Route>
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
