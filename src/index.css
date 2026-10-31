@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Tajawal', sans-serif;
+  --font-body: 'Almarai', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-navy-950: #080f24;
+  --color-navy-900: #101d40;
+  --color-navy-800: #182a5c;
+  --color-navy-700: #24397a;
+  --color-accent: #f0930f;
+  --color-accent-dark: #c9750a;
+  --color-accent-light: #ffb454;
+  --color-surface: #f4f5fa;
+  --color-border-soft: #e7e9f2;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-data {
+  font-family: var(--font-mono);
+}
+
+/* ===== أنيميشن عامة ===== */
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expand-down {
+  from { opacity: 0; transform: scaleY(0.95); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.page-enter { animation: fade-in-up 0.3s ease-out; }
+.panel-enter { animation: expand-down 0.18s ease-out; transform-origin: top; }
+.pop-enter { animation: pop-in 0.2s ease-out; }
+
+/* ===== البطاقة: هادئة وثابتة. مفيش حركة عند المرور لأن أغلب البطاقات معلومات مش أزرار ===== */
+.card {
+  background: white;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 0.875rem;
+  box-shadow: 0 1px 2px rgba(16, 29, 64, 0.05);
+}
+
+/* ===== الزرار الأساسي: لون واحد صريح من غير تدرج ولا توهج ===== */
+.btn-primary {
+  background-color: var(--color-accent);
+  box-shadow: 0 1px 2px rgba(16, 29, 64, 0.18);
+  transition: background-color 0.15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* هيدر زجاجي شفاف خفيف */
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* خلفية لوحة الدخول: كحلي متدرج هادئ من غير توهج */
+.hero-gradient {
+  background: linear-gradient(160deg, var(--color-navy-950) 0%, var(--color-navy-900) 60%, var(--color-navy-800) 100%);
+}
+
+/* منع أي تراكب أفقي في الجداول على الشاشات الصغيرة */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll table {
+  min-width: 640px;
+}
+
+/* ===== طباعة الفاتورة ===== */
+@page { size: A4; margin: 12mm; }
+@media print {
+  /* عشان لون ترويسة الجدول وخلفيات المربعات تطلع في الطباعة وملف الـ PDF */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-area .table-scroll table { min-width: 0; }
+  .print-area thead { display: table-header-group; }
+  .print-area tr { break-inside: avoid; }
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+  }
+  .no-print { display: none !important; }
+}
